@@ -12,3 +12,25 @@ Framework: Qt 6.9.1
 IDE: Qt Creator 17.0.0 (With CMakeLists)
 
 Language: C++ 17
+
+## Development Details to Check
+
+### Qt Components that can be useful
+##### Main Widgets:
+###### QTreeView/QListView
+###### QTreeView/QListView
+###### QTextEdit
+###### QSplitter
+###### QTabWidget
+###### QProgressBar
+
+##### Models/Views:
+###### QAbstractItemModel
+###### QStandardItemModel
+###### QSortFilterProxyModel
+
+##### Other useful commands:
+###### QProcess
+###### QFileSystemWatcher
+###### QSettings
+###### QThread
