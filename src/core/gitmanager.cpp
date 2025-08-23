@@ -1,3 +1,3 @@
 #include "gitmanager.h"
 
-GitManager::GitManager() {}
+GitManager::GitManager(QObject *parent) {}
