@@ -16,6 +16,40 @@ bool GitManager::setRepository(const QString &path)
     return true;
 }
 
+bool GitManager::stageFile(const QString &fileName)
+{
+    QString output = executeGitCommand({"add", fileName});
+    return !output.isNull();
+}
+
+bool GitManager::commit(const QString &message)
+{
+    QString output = executeGitCommand({"commit", "-m", message});
+    return !output.isNull();
+}
+
+bool GitManager::deleteCommit(const QString &commitHash)
+{
+    QString output = executeGitCommand({"reset", "--hard", commitHash});
+    return !output.isNull();
+}
+
+QStringList GitManager::getBranches()
+{
+    QString output = executeGitCommand({"branch", "-a"});
+    QStringList branches = output.split('\n', Qt::SkipEmptyParts);
+
+    for (QString &branch : branches)
+    {
+        branch = branch.trimmed();
+        if (branch.startsWith("* "))
+        {
+            branch = branch.mid(2);
+        }
+    }
+    return branches;
+}
+
 // Slot Functions___________________________________
 
 void GitManager::onProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
@@ -31,7 +65,7 @@ void GitManager::onProcessError(QProcess::ProcessError)
 //__________________________________________________
 
 
-// Signal Functions________________________________
+// Private Functions________________________________
 
 QString GitManager::executeGitCommand(const QStringList &arguments)
 {
@@ -61,3 +95,5 @@ QString GitManager::executeGitCommand(const QStringList &arguments)
 
     return process.readAllStandardOutput();
 }
+
+//_____________________________________________________
