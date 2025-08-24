@@ -75,9 +75,31 @@ void GitManager::onProcessFinished(int exitCode, QProcess::ExitStatus exitStatus
     m_currentProcess = nullptr;
 }
 
-void GitManager::onProcessError(QProcess::ProcessError)
+void GitManager::onProcessError(QProcess::ProcessError error)
 {
+    QString errorString;
+    switch (error)
+    {   // Replace these strings to ts calls later
+        case QProcess::FailedToStart:
+            errorString = "Git not found or failed to start";
+            break;
+        case QProcess::Crashed:
+            errorString = "Git process crashed";
+            break;
+        case QProcess::Timedout:
+            errorString = "Git process timed out";
+            break;
+        default:
+            errorString = "Unknown error occured";
+    }
 
+        emit commandError(errorString);
+
+    if (m_currentProcess)
+    {
+        m_currentProcess->deleteLater();
+        m_currentProcess = nullptr;
+    }
 }
 
 //__________________________________________________
