@@ -39,6 +39,7 @@ QStringList GitManager::getBranches()
     QString output = executeGitCommand({"branch", "-a"});
     QStringList branches = output.split('\n', Qt::SkipEmptyParts);
 
+    // Clean format (* current, remotes/origins/...)
     for (QString &branch : branches)
     {
         branch = branch.trimmed();
@@ -54,7 +55,24 @@ QStringList GitManager::getBranches()
 
 void GitManager::onProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
+    if (!m_currentProcess) return;
 
+    QString output = m_currentProcess->readAllStandardOutput();
+    QString error = m_currentProcess->readAllStandardError();
+
+    bool success = (exitCode == 0 && exitStatus == QProcess::NormalExit);
+
+    if(success)
+    {
+        emit commandFinished(true, output);
+    }else
+    {
+        emit commandFinished(false, error);
+    }
+
+    // Clean process
+    m_currentProcess->deleteLater();
+    m_currentProcess = nullptr;
 }
 
 void GitManager::onProcessError(QProcess::ProcessError)
