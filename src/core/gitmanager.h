@@ -9,6 +9,7 @@ class GitManager : public QObject
 public:
     explicit GitManager(QObject *parent = nullptr);
     bool setRepository(const QString &path);
+    QStringList getStatus();
     bool stageFile(const QString &filename);
     bool commit(const QString &message);
     bool deleteCommit(const QString &commitHash);

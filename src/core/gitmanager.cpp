@@ -16,6 +16,12 @@ bool GitManager::setRepository(const QString &path)
     return true;
 }
 
+QStringList GitManager::getStatus()
+{
+    QString output = executeGitCommand({"status", "--porcelain"});
+    return output.split('\n', Qt::SkipEmptyParts);
+}
+
 bool GitManager::stageFile(const QString &fileName)
 {
     QString output = executeGitCommand({"add", fileName});
@@ -136,4 +142,23 @@ QString GitManager::executeGitCommand(const QStringList &arguments)
     return process.readAllStandardOutput();
 }
 
+void GitManager::executeGitCommandAsync(const QStringList &arguments)
+{
+    if (m_currentProcess && m_currentProcess->state() != QProcess::NotRunning)
+    {
+        m_currentProcess->kill();
+        m_currentProcess->waitForFinished(1000);
+    }
+
+    // Creates new process
+    m_currentProcess = new QProcess(this);
+    m_currentProcess->setWorkingDirectory(m_repositoryPath);
+
+    // Connects signals
+    connect(m_currentProcess, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &GitManager::onProcessFinished);
+    connect(m_currentProcess, &QProcess::errorOccurred, this, &GitManager::onProcessError);
+
+    // Executes command
+    m_currentProcess->start("git", arguments);
+}
 //_____________________________________________________
