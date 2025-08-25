@@ -57,6 +57,29 @@ QStringList GitManager::getBranches()
     return branches;
 }
 
+bool GitManager::createBranch(const QString &branchName)
+{
+    if (branchName.isEmpty())
+    {   // Replace String with TS later
+        emit commandError("Branch name cannot be empty");
+        return false;
+    }
+
+    QStringList args = {"branch", branchName};
+    QString output = executeGitCommand(args);
+
+    if (!output.isNull())
+    {
+        emit commandFinished(true, output);
+        return true;
+    }else
+    {
+        emit commandFinished(false, output);
+        return false;
+    }
+}
+
+
 // Slot Functions___________________________________
 
 void GitManager::onProcessFinished(int exitCode, QProcess::ExitStatus exitStatus)
@@ -162,3 +185,4 @@ void GitManager::executeGitCommandAsync(const QStringList &arguments)
     m_currentProcess->start("git", arguments);
 }
 //_____________________________________________________
+

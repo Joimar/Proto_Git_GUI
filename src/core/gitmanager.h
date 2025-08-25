@@ -14,12 +14,13 @@ public:
     bool commit(const QString &message);
     bool deleteCommit(const QString &commitHash);
     QStringList getBranches();
-    bool createBranch(const QString &name);
+    bool createBranch(const QString &branchName);
     bool deleteBranch(const QString &name);
 
 signals:
     void commandFinished(bool success, const QString &output);
     void commandError(const QString &error);
+
 
 private slots:
     void onProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
