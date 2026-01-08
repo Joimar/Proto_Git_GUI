@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "core/gitmanager.h"
+#include "model/gitmanager.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
