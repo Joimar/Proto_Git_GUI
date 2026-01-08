@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "core/gitmanager.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -13,6 +14,9 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+private slots:
+    void on_statusButton_clicked();
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -21,5 +25,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    GitManager *m_gitManager;
 };
 #endif // MAINWINDOW_H
