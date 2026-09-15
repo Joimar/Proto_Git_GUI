@@ -27,6 +27,19 @@
      <string>Git Status</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="setRepoButton">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>305</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Set Repository</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

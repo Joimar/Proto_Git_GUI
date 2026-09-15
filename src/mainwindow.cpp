@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle("Proto Git GUI");
 
     connect(ui->gitStatusButton, &QPushButton::clicked, this, &MainWindow::on_statusButton_clicked);
+    connect(ui->setRepoButton, &QPushButton::clicked, this, &MainWindow::on_setRepository_cliked);
 }
 
 void MainWindow::TestQProcess()
@@ -53,6 +54,11 @@ void MainWindow::on_statusButton_clicked()
     {
         std::cout << str.toStdString() << std::endl;
     }
+}
+
+void MainWindow::on_setRepository_cliked()
+{
+    std::cout << "Set Repo clicked!" << std::endl;
 }
 
 MainWindow::~MainWindow()
