@@ -4,7 +4,7 @@
 #include <QDebug>
 #include <iostream>
 #include <ostream>
-
+//Develop branch comment
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
