@@ -69,7 +69,7 @@ void MainWindow::on_setRepository_cliked()
 
     std::cout << dirPath.toStdString() << std::endl;
 }
-//
+//Teste
 MainWindow::~MainWindow()
 {
     delete ui;
