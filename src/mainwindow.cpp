@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <iostream>
 #include <ostream>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -58,7 +59,15 @@ void MainWindow::on_statusButton_clicked()
 
 void MainWindow::on_setRepository_cliked()
 {
+    QString dirPath = QFileDialog::getExistingDirectory(
+    this,
+        tr("Select Repo"),
+        QDir::homePath(), //default directory
+        QFileDialog::ShowDirsOnly| QFileDialog::DontResolveSymlinks);
+
     std::cout << "Set Repo clicked!" << std::endl;
+
+    std::cout << dirPath.toStdString() << std::endl;
 }
 
 MainWindow::~MainWindow()
