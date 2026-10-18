@@ -68,8 +68,10 @@ void MainWindow::on_setRepository_cliked()
     std::cout << "Set Repo clicked!" << std::endl;
 
     std::cout << dirPath.toStdString() << std::endl;
+
+    m_gitManager->setRepository(dirPath);
 }
-//Teste
+
 MainWindow::~MainWindow()
 {
     delete ui;

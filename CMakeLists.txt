@@ -27,6 +27,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         src/model/gitmanager.h src/model/gitmanager.cpp
+        "src/core/Place holder.txt"
+        src/ui/GitAddFilesForm.ui
+        src/ui/gitaddfilesform.h src/ui/gitaddfilesform.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Proto_Git_GUI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
