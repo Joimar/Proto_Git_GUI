@@ -9,3 +9,8 @@ GitAddFilesForm::GitAddFilesForm(QWidget *parent):QWidget(parent)
 {
 
 }
+
+GitAddFilesForm::~GitAddFilesForm()
+{
+    // Corpo do destruidor (pode ficar vazio se não houver ponteiros manuais para deletar)
+}

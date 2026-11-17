@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->gitStatusButton, &QPushButton::clicked, this, &MainWindow::on_statusButton_clicked);
     connect(ui->setRepoButton, &QPushButton::clicked, this, &MainWindow::on_setRepository_cliked);
+    connect(ui->gitAdd, &QPushButton::clicked, this, &MainWindow::on_addButton_clicked);
 }
 
 void MainWindow::TestQProcess()
@@ -24,7 +25,7 @@ void MainWindow::TestQProcess()
     QProcess process;
 
     // Definy work directory
-    process.setWorkingDirectory("/home/joimar/PROJETOS PESSOAIS/Repositorios/Proto_Git_GUI");
+    process.setWorkingDirectory("/home/joi/Projetos/Pessoais/Proto_Git_GUI");
 
     process.start("git", QStringList() << "status");
     process.waitForFinished();
@@ -39,9 +40,9 @@ void MainWindow::TestQProcess()
 
     qDebug() << "Output: " << output;
     qDebug() << "Error: " << error;
-    qDebug() << "Exit code: " << process.exitCode();
+    qDebug() << "Exit code: " << process.exitCode() << "\n\n" ;
 
-
+    qDebug() << "OUTPUT: " << output;
 }
 
 void MainWindow::on_statusButton_clicked()
@@ -70,6 +71,17 @@ void MainWindow::on_setRepository_cliked()
     std::cout << dirPath.toStdString() << std::endl;
 
     m_gitManager->setRepository(dirPath);
+}
+
+void MainWindow::on_addButton_clicked()
+{
+    QStringList output = m_gitManager->gitAdd();
+
+    for(const QString &str:output)
+    {
+        std::cout << str.toStdString() << std::endl;
+    }
+
 }
 
 MainWindow::~MainWindow()

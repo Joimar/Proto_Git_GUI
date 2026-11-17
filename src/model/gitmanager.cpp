@@ -79,6 +79,14 @@ bool GitManager::createBranch(const QString &branchName)
     }
 }
 
+QStringList GitManager::gitAdd()
+{
+    QStringList args = {"add", "--help"};
+    //QString output = executeGitCommand(args);
+    QString output = executeGitCommand({"add", "--help"});
+    return output.split('\n', Qt::SkipEmptyParts);
+}
+
 
 // Slot Functions___________________________________
 
@@ -136,6 +144,8 @@ void GitManager::onProcessError(QProcess::ProcessError error)
 
 // Private Functions________________________________
 
+/*Funtion resposible for executing the QStringList
+ * arguments provided by other funtions*/
 QString GitManager::executeGitCommand(const QStringList &arguments)
 {
     QProcess process;

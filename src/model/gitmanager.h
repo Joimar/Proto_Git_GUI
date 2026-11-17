@@ -16,6 +16,7 @@ public:
     QStringList getBranches();
     bool createBranch(const QString &branchName);
     bool deleteBranch(const QString &name);
+    QStringList gitAdd();
 
 signals:
     void commandFinished(bool success, const QString &output);

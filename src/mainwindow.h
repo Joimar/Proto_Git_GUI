@@ -17,6 +17,7 @@ class MainWindow : public QMainWindow
 private slots:
     void on_statusButton_clicked();
     void on_setRepository_cliked();
+    void on_addButton_clicked();
 
 public:
     MainWindow(QWidget *parent = nullptr);
